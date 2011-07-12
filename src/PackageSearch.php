@@ -29,6 +29,14 @@ class PackageSearch extends Packages
                 $result->free();
             }
         }
-        parent::__construct(new ArrayIterator($records), $this->options['offset'], $this->options['limit']);
+        $count = $this->options['limit'];
+        if (count($records) == 0) {
+            $count = 0;
+        }
+        parent::__construct(
+            new ArrayIterator($records),
+            $this->options['offset'],
+            $count
+        );
     }
 }
